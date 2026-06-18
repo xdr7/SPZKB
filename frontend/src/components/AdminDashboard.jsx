@@ -21,7 +21,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 
-const API_URL = '/api'
+const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
 const bulanNames = [
   'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',

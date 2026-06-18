@@ -134,6 +134,22 @@ Production stack uses:
 - FastAPI backend on `/api/*`
 - SQLite data stored in Docker volume
 
+Shared hosting / cPanel deployment:
+
+Shared hosting usually cannot run Docker, Caddy, or a long-running FastAPI backend. For shared hosting, deploy the frontend as static files and host the backend separately on a Python/Docker-capable platform.
+
+Frontend API base URL can be configured with:
+
+```env
+VITE_API_BASE_URL=/api
+```
+
+If the backend is hosted on another domain, set it to the full backend URL:
+
+```env
+VITE_API_BASE_URL=https://api.example.com/api
+```
+
 
 ## 🏗️ Project Structure
 

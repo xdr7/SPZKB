@@ -4,7 +4,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { FiShield, FiArrowLeft, FiArrowRight, FiCheck, FiAlertTriangle, FiDownload, FiRefreshCw } from 'react-icons/fi'
 
-const API_URL = '/api'
+const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
 function KonsultasiWizard() {
   const [step, setStep] = useState(1)
