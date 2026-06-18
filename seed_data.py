@@ -3,9 +3,14 @@ Seed data script for Sistem Pakar Penggunaan Zat Kimia pada Makanan.
 Run this script to populate the database with initial knowledge base data.
 Data berdasarkan PerBPOM No. 11 Tahun 2019 tentang Bahan Tambahan Pangan.
 """
-from backend.app.database import SessionLocal, engine, Base
-from backend.app.models import User, Zat, Makanan, Rule, RuleAntecedent, BatasMaksimum, LogAktivitas
-from backend.app.utils.security import hash_password
+try:
+    from backend.app.database import SessionLocal, engine, Base
+    from backend.app.models import User, Zat, Makanan, Rule, RuleAntecedent, BatasMaksimum, LogAktivitas
+    from backend.app.utils.security import hash_password
+except ImportError:
+    from app.database import SessionLocal, engine, Base
+    from app.models import User, Zat, Makanan, Rule, RuleAntecedent, BatasMaksimum, LogAktivitas
+    from app.utils.security import hash_password
 
 
 def seed_database():
