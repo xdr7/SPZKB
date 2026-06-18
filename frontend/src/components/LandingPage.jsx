@@ -4,6 +4,9 @@ import { FiShield, FiSearch, FiBookOpen, FiUsers, FiArrowRight, FiAlertTriangle,
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useBranding } from '../context/BrandingContext'
+import { asArray } from '../utils/array'
+
+const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
 function LandingPage() {
   const { branding } = useBranding()
@@ -17,8 +20,8 @@ function LandingPage() {
 
   const fetchComments = async () => {
     try {
-      const response = await axios.get('/api/komentar')
-      setComments(response.data)
+      const response = await axios.get(`${API_URL}/komentar`)
+      setComments(asArray(response.data))
     } catch (error) {
       setComments([])
     }
@@ -33,7 +36,7 @@ function LandingPage() {
 
     setCommentLoading(true)
     try {
-      await axios.post('/api/komentar', commentForm)
+      await axios.post(`${API_URL}/komentar`, commentForm)
       toast.success('Terima kasih, komentar Anda berhasil dikirim')
       setCommentForm({ nama: '', email: '', komentar: '' })
       fetchComments()
@@ -253,10 +256,10 @@ function LandingPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Komentar Terbaru</h3>
             <div className="space-y-4">
-              {comments.length === 0 ? (
+              {(Array.isArray(comments) ? comments : []).length === 0 ? (
                 <p className="text-gray-400 text-center py-8">Belum ada komentar pengunjung.</p>
               ) : (
-                comments.map((comment) => (
+                (Array.isArray(comments) ? comments : []).map((comment) => (
                   <div key={comment.id} className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                     <div className="flex items-center justify-between gap-3">
                       <p className="font-semibold text-gray-900">{comment.nama}</p>

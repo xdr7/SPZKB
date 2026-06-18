@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 import Pagination from './Pagination'
+import { asArray } from '../utils/array'
 import {
   HiOutlinePlus,
   HiOutlinePencil,
@@ -39,7 +40,7 @@ export default function AdminMakanan() {
   const fetchData = async () => {
     try {
       const res = await axios.get(`${API_URL}/makanan`)
-      setData(res.data)
+      setData(asArray(res.data))
     } catch (error) {
       toast.error('Gagal memuat data makanan')
     } finally {
@@ -110,7 +111,8 @@ export default function AdminMakanan() {
     }
   }
 
-  const filtered = data.filter(
+  const safeData = asArray(data)
+  const filtered = safeData.filter(
     (item) =>
       item.nama.toLowerCase().includes(search.toLowerCase()) ||
       item.kode.toLowerCase().includes(search.toLowerCase())

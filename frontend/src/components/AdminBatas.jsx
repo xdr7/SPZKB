@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 import Pagination from './Pagination'
+import { asArray } from '../utils/array'
 import {
   HiOutlinePlus,
   HiOutlinePencil,
@@ -46,7 +47,7 @@ export default function AdminBatas() {
   const fetchBatas = async () => {
     try {
       const res = await axios.get(`${API_URL}/batas`)
-      setData(res.data)
+      setData(asArray(res.data))
     } catch (error) {
       toast.error('Gagal memuat data batas maksimum')
     } finally {
@@ -57,7 +58,7 @@ export default function AdminBatas() {
   const fetchZat = async () => {
     try {
       const res = await axios.get(`${API_URL}/zat`)
-      setZatList(res.data)
+      setZatList(asArray(res.data))
     } catch (error) {
       console.error('Gagal memuat zat:', error)
     }
@@ -66,7 +67,7 @@ export default function AdminBatas() {
   const fetchMakanan = async () => {
     try {
       const res = await axios.get(`${API_URL}/makanan`)
-      setMakananList(res.data)
+      setMakananList(asArray(res.data))
     } catch (error) {
       console.error('Gagal memuat makanan:', error)
     }
@@ -134,7 +135,8 @@ export default function AdminBatas() {
     }
   }
 
-  const filtered = data.filter(
+  const safeData = asArray(data)
+  const filtered = safeData.filter(
     (item) =>
       (item.zat_nama &&
         item.zat_nama.toLowerCase().includes(search.toLowerCase())) ||

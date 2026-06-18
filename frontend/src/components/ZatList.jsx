@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { FiShield, FiArrowLeft, FiAlertTriangle, FiInfo } from 'react-icons/fi'
+import { asArray } from '../utils/array'
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
@@ -17,7 +18,7 @@ function ZatList() {
   const fetchZat = async () => {
     try {
       const response = await axios.get(`${API_URL}/zat`)
-      setZatList(response.data)
+      setZatList(asArray(response.data))
     } catch (error) {
       console.error('Error fetching zat:', error)
     } finally {

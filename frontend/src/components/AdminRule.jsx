@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 import Pagination from './Pagination'
+import { asArray } from '../utils/array'
 import {
   HiOutlineLightningBolt,
   HiOutlinePlus,
@@ -43,7 +44,7 @@ export default function AdminRule() {
   const fetchRules = async () => {
     try {
       const res = await axios.get(`${API_URL}/rules`)
-      setData(res.data)
+      setData(asArray(res.data))
     } catch (error) {
       toast.error('Gagal memuat data aturan')
     } finally {
@@ -54,7 +55,7 @@ export default function AdminRule() {
   const fetchMakanan = async () => {
     try {
       const res = await axios.get(`${API_URL}/makanan`)
-      setMakananList(res.data)
+      setMakananList(asArray(res.data))
     } catch (error) {
       console.error('Gagal memuat makanan:', error)
     }
@@ -63,7 +64,7 @@ export default function AdminRule() {
   const fetchZat = async () => {
     try {
       const res = await axios.get(`${API_URL}/zat`)
-      setZatList(res.data)
+      setZatList(asArray(res.data))
     } catch (error) {
       console.error('Gagal memuat zat:', error)
     }
@@ -82,17 +83,18 @@ export default function AdminRule() {
 
   const openEdit = (item) => {
     setEditingItem(item)
-    setForm({
-      kode: item.kode,
-      makanan_id: item.makanan_id,
-      kesimpulan: item.kesimpulan,
-      antecedents: item.antecedents.length > 0
-        ? item.antecedents.map((a) => ({
-            zat_id: a.zat_id,
-            operator: a.operator,
-          }))
-        : [{ zat_id: '', operator: 'OR' }],
-    })
+      const itemAntecedents = asArray(item.antecedents)
+      setForm({
+        kode: item.kode,
+        makanan_id: item.makanan_id,
+        kesimpulan: item.kesimpulan,
+        antecedents: itemAntecedents.length > 0
+          ? itemAntecedents.map((a) => ({
+              zat_id: a.zat_id,
+              operator: a.operator,
+            }))
+          : [{ zat_id: '', operator: 'OR' }],
+      })
     setShowModal(true)
   }
 
@@ -120,7 +122,7 @@ export default function AdminRule() {
     const token = localStorage.getItem('token')
 
     // Validate antecedents
-    const validAntecedents = form.antecedents.filter((a) => a.zat_id !== '')
+    const validAntecedents = asArray(form.antecedents).filter((a) => a.zat_id !== '')
     if (validAntecedents.length === 0) {
       toast.error('Minimal satu zat kimia harus dipilih')
       return
@@ -172,7 +174,7 @@ export default function AdminRule() {
 
   const handleTestRule = async (item) => {
     const token = localStorage.getItem('token')
-    const zatIds = item.antecedents.map((a) => a.zat_id)
+    const zatIds = asArray(item.antecedents).map((a) => a.zat_id)
     try {
       const res = await axios.post(
         `${API_URL}/rules/${item.id}/test`,
@@ -190,7 +192,8 @@ export default function AdminRule() {
     }
   }
 
-  const filtered = data.filter(
+  const safeData = asArray(data)
+  const filtered = safeData.filter(
     (item) =>
       item.kode.toLowerCase().includes(search.toLowerCase()) ||
       (item.makanan_nama &&
@@ -289,13 +292,13 @@ export default function AdminRule() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex flex-wrap gap-1">
-                        {item.antecedents.map((ant, idx) => (
+                        {asArray(item.antecedents).map((ant, idx, arr) => (
                           <span
-                            key={ant.id}
+                            key={ant.id || idx}
                             className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700"
                           >
                             {ant.zat_nama || `Zat #${ant.zat_id}`}
-                            {idx < item.antecedents.length - 1 && (
+                            {idx < arr.length - 1 && (
                               <span className="text-yellow-600 font-semibold ml-1">
                                 {ant.operator}
                               </span>
@@ -453,7 +456,7 @@ export default function AdminRule() {
                   </button>
                 </div>
                 <div className="space-y-3">
-                  {form.antecedents.map((ant, index) => (
+                    {asArray(form.antecedents).map((ant, index) => (
                     <div
                       key={index}
                       className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"

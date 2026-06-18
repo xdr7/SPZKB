@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { FiShield, FiArrowLeft, FiAlertTriangle } from 'react-icons/fi'
+import { asArray } from '../utils/array'
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
@@ -18,7 +19,7 @@ function MakananList() {
   const fetchMakanan = async () => {
     try {
       const response = await axios.get(`${API_URL}/makanan`)
-      setMakananList(response.data)
+      setMakananList(asArray(response.data))
     } catch (error) {
       console.error('Error fetching makanan:', error)
     } finally {
@@ -91,13 +92,13 @@ function MakananList() {
                 )}
               </button>
 
-              {selectedMakanan?.id === makanan.id && makananZat[makanan.id] && (
+              {selectedMakanan?.id === makanan.id && (
                 <div className="mt-4 pt-4 border-t border-gray-100 animate-fade-in">
                   <h4 className="font-medium text-gray-700 mb-3">Zat Kimia Terkait:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {makananZat[makanan.id].map((zat) => (
+                    {(Array.isArray(makananZat[makanan.id]) ? makananZat[makanan.id] : []).map((zat) => (
                       <span key={zat.id} className="badge-berbahaya text-sm px-3 py-1">
-                        {zat.nama} ({zat.kode})
+                        {zat.zat_nama || zat.nama} ({zat.zat_kode || zat.kode})
                       </span>
                     ))}
                   </div>

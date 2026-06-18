@@ -12,6 +12,7 @@ from .database import engine, Base, SessionLocal
 from .models import User, LogAktivitas
 from .utils.security import hash_password
 from .config import settings
+from seed_data import seed_database
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -57,29 +58,7 @@ app.include_router(komentar.router)
 @app.on_event("startup")
 def startup():
     """Initialize database with seed data on first run."""
-    db = SessionLocal()
-    try:
-        # Check if admin user exists
-        admin = db.query(User).filter(User.username == "admin").first()
-        if not admin:
-            # Create default admin
-            admin = User(
-                username="admin",
-                password_hash=hash_password("admin123"),
-                role="superadmin",
-            )
-            db.add(admin)
-            db.commit()
-
-            log = LogAktivitas(
-                user_id=admin.id,
-                aksi="SYSTEM",
-                detail="System initialized with default admin account",
-            )
-            db.add(log)
-            db.commit()
-    finally:
-        db.close()
+    seed_database()
 
 
 @app.get("/")

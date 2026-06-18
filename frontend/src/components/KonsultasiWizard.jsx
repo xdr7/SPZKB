@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { FiShield, FiArrowLeft, FiArrowRight, FiCheck, FiAlertTriangle, FiDownload, FiRefreshCw } from 'react-icons/fi'
+import { asArray } from '../utils/array'
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
@@ -28,8 +29,8 @@ function KonsultasiWizard() {
         axios.get(`${API_URL}/makanan`),
         axios.get(`${API_URL}/zat`),
       ])
-      setMakananList(makananRes.data)
-      setZatList(zatRes.data)
+      setMakananList(asArray(makananRes.data))
+      setZatList(asArray(zatRes.data))
     } catch (error) {
       toast.error('Gagal memuat data')
     }
@@ -61,8 +62,9 @@ function KonsultasiWizard() {
         kadar: parseFloat(kadar),
         satuan: satuan,
       })
-      setResult(response.data)
-      setConsultationId(response.data[0]?.id || null)
+      const result = asArray(response.data)
+      setResult(result)
+      setConsultationId(result[0]?.id || null)
       setStep(3)
       toast.success('Konsultasi selesai!')
     } catch (error) {
@@ -282,7 +284,7 @@ function KonsultasiWizard() {
             </div>
 
             <div className="space-y-4 mb-8">
-              {result.map((item, idx) => (
+              {(Array.isArray(result) ? result : []).map((item, idx) => (
                 <div
                   key={idx}
                   className={`card border-l-4 ${

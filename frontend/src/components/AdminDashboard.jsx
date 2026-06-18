@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
-import Pagination from './Pagination'
+import { asArray } from '../utils/array'
 import {
   HiOutlineBeaker,
   HiOutlineCube,
@@ -11,15 +11,6 @@ import {
   HiOutlineClock,
   HiOutlineUser,
 } from 'react-icons/hi'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts'
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || '/api'
 
@@ -66,7 +57,7 @@ export default function AdminDashboard() {
         }),
       ])
       setStats(statsRes.data)
-      setLogs(logsRes.data)
+      setLogs(asArray(logsRes.data))
     } catch (error) {
       toast.error('Gagal memuat data dashboard')
     } finally {
@@ -82,10 +73,17 @@ export default function AdminDashboard() {
     )
   }
 
-  const chartData = stats?.konsultasi_per_bulan?.map((item) => ({
-    name: bulanNames[item.bulan - 1] || `Bulan ${item.bulan}`,
-    jumlah: item.jumlah,
-  })) || []
+  const monthlyStats = Array.isArray(stats?.konsultasi_per_bulan)
+    ? stats.konsultasi_per_bulan
+    : []
+
+  const chartData = bulanNames.map((name, index) => {
+    const item = monthlyStats.find((month) => Number(month.bulan) === index + 1)
+    return {
+      name,
+      jumlah: item?.jumlah || 0,
+    }
+  })
 
   const totalPages = Math.ceil(logs.length / pageSize)
   const paginatedLogs = logs.slice((page - 1) * pageSize, page * pageSize)
@@ -135,21 +133,27 @@ export default function AdminDashboard() {
         </h2>
         <div className="h-72">
           {chartData.length > 0 ? (
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} allowDecimals={false} />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: '8px',
-                    border: '1px solid #e5e7eb',
-                    boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
-                  }}
-                />
-                <Bar dataKey="jumlah" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="h-full flex items-end gap-2 sm:gap-3">
+              {chartData.map((item) => {
+                const max = Math.max(...chartData.map((d) => d.jumlah), 1)
+                const height = Math.max(8, Math.round((item.jumlah / max) * 100))
+
+                return (
+                  <div key={item.name} className="flex-1 flex flex-col items-center gap-2 min-w-0">
+                    <div className="w-full bg-gray-100 rounded-t-lg relative flex items-end h-52 overflow-hidden">
+                      <div
+                        className="w-full bg-primary-500 rounded-t-lg transition-all"
+                        style={{ height: `${height}%` }}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-xs font-semibold text-gray-700">{item.jumlah}</p>
+                      <p className="text-[10px] text-gray-500">{item.name}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           ) : (
             <div className="flex items-center justify-center h-full text-gray-400">
               Belum ada data konsultasi
