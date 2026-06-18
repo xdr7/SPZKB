@@ -89,13 +89,51 @@ The frontend will be available at `http://localhost:5173`
 
 ## 🐳 Docker Deployment
 
+Local development:
+
 ```bash
-# Build and run all services
 docker-compose up --build
 
 # Backend: http://localhost:8000
 # Frontend: http://localhost:3000
 ```
+
+Production deployment with domain and HTTPS:
+
+1. Point your domain DNS to the VPS IP:
+
+```text
+Type: A
+Name: spakar
+Value: YOUR_VPS_IP
+```
+
+2. Copy production environment file:
+
+```bash
+cp .env.example .env
+```
+
+3. Edit `.env` and set a strong `SECRET_KEY`.
+
+4. Start production stack:
+
+```bash
+docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+```
+
+5. Open:
+
+```text
+https://spakar.sasskom.app
+```
+
+Production stack uses:
+- Caddy for HTTPS
+- Nginx for static frontend build
+- FastAPI backend on `/api/*`
+- SQLite data stored in Docker volume
+
 
 ## 🏗️ Project Structure
 
