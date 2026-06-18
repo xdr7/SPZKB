@@ -98,57 +98,13 @@ docker-compose up --build
 # Frontend: http://localhost:3000
 ```
 
-Production deployment with domain and HTTPS:
-
-1. Point your domain DNS to the VPS IP:
-
-```text
-Type: A
-Name: spakar
-Value: YOUR_VPS_IP
-```
-
-2. Copy production environment file:
+Production Docker deployment is available in:
 
 ```bash
-cp .env.example .env
+docker-compose.prod.yml
 ```
 
-3. Edit `.env` and set a strong `SECRET_KEY`.
-
-4. Start production stack:
-
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env up -d --build
-```
-
-5. Open:
-
-```text
-https://spakar.sasskom.app
-```
-
-Production stack uses:
-- Caddy for HTTPS
-- Nginx for static frontend build
-- FastAPI backend on `/api/*`
-- SQLite data stored in Docker volume
-
-Shared hosting / cPanel deployment:
-
-Shared hosting usually cannot run Docker, Caddy, or a long-running FastAPI backend. For shared hosting, deploy the frontend as static files and host the backend separately on a Python/Docker-capable platform.
-
-Frontend API base URL can be configured with:
-
-```env
-VITE_API_BASE_URL=/api
-```
-
-If the backend is hosted on another domain, set it to the full backend URL:
-
-```env
-VITE_API_BASE_URL=https://api.example.com/api
-```
+Configure environment values in `.env` before deploying. Do not commit `.env` because it contains private settings.
 
 
 ## 🏗️ Project Structure
