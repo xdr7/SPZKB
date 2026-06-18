@@ -174,4 +174,11 @@ The system uses Forward Chaining inference:
 
 ## 📄 License
 
-This project is for educational purposes.
+This project is licensed under the **MIT License**.
+
+Copyright (c) 2026 **asmaul asni subegi, S.Kom**
+
+Developer: **asmaul asni subegi, S.Kom**  
+Email: **sabayonx@gmail.com**
+
+See [LICENSE](LICENSE) for details.
