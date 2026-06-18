@@ -21,6 +21,23 @@ SPZKB is a web-based expert system that helps users identify whether processed f
 - Ikan Asin (Salted Fish)
 - Jajanan Anak (Children's Snacks)
 
+## 📸 Screenshots
+
+### Landing Page
+![Landing Page](docs/screenshots/landing.png)
+
+### Konsultasi
+![Konsultasi](docs/screenshots/konsultasi.png)
+
+### Admin Login
+![Admin Login](docs/screenshots/admin-login.png)
+
+### Admin Dashboard
+![Admin Dashboard](docs/screenshots/admin-dashboard.png)
+
+### Admin Batas Maksimum
+![Admin Batas Maksimum](docs/screenshots/admin-batas.png)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
