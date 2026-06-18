@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "judul": "Validasi Data Batas Maksimum Zat Kimia pada Makanan",
+    "regulasi": "PerBPOM No. 11 Tahun 2019 tentang Bahan Tambahan Pangan",
+    "regulasi_tambahan": "PerBPOM No. 36 Tahun 2013 tentang Batas Maksimum Penggunaan BTP",
+    "tanggal_validasi": "2026-06-15",
+    "keterangan": "Data ini merupakan hasil validasi dan pembaruan dari data skripsi tahun 2011 yang telah disesuaikan dengan regulasi BPOM terbaru."
+  },
+  "zat_kimia": [
+    {
+      "kode": "Z001",
+      "nama": "Kalsium Benzoat",
+      "nama_lain": "Calcium Benzoate",
+      "nomor_cas": "2090-05-3",
+      "fungsi": "Pengawet (antimikroba) untuk mencegah pertumbuhan bakteri, kapang, dan khamir",
+      "batas_maksimum": [
+        {
+          "makanan": "Saus Tomat",
+          "kode_makanan": "M001",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 12.4 (saus dan produk sejenis)"
+        },
+        {
+          "makanan": "Minuman Ringan Berkarbonasi",
+          "kode_makanan": "M002",
+          "nilai_maks": 600,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 14.1.4 (minuman ringan berkarbonasi)"
+        },
+        {
+          "makanan": "Selai dan Jeli",
+          "kode_makanan": "M003",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 11.2 (selai, jeli, marmalade)"
+        },
+        {
+          "makanan": "Aneka Olahan Ikan",
+          "kode_makanan": "M004",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 9.2 (produk perikanan olahan)"
+        },
+        {
+          "makanan": "Jajanan Anak (Ciki/Makaron)",
+          "kode_makanan": "M005",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 15.1 (camilan siap saji)"
+        },
+        {
+          "makanan": "Tahu",
+          "kode_makanan": "M006",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 4.2.2 (produk kedelai olahan)"
+        },
+        {
+          "makanan": "Mie Basah",
+          "kode_makanan": "M007",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 6.4.3 (mie basah)"
+        }
+      ]
+    },
+    {
+      "kode": "Z002",
+      "nama": "Kalium Nitrit",
+      "nama_lain": "Potassium Nitrite",
+      "nomor_cas": "7758-09-0",
+      "fungsi": "Pengawet daging olahan (pengikat warna dan penghambat Clostridium botulinum)",
+      "batas_maksimum": [
+        {
+          "makanan": "Daging Olahan (Sosis/Bakso)",
+          "kode_makanan": "M001",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 8.2 (daging olahan termal)"
+        },
+        {
+          "makanan": "Daging Awetan (Kornet)",
+          "kode_makanan": "M002",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 8.3 (daging awetan)"
+        },
+        {
+          "makanan": "Ikan Olahan",
+          "kode_makanan": "M003",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 9.2 (produk perikanan olahan)"
+        },
+        {
+          "makanan": "Daging Asap",
+          "kode_makanan": "M004",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 8.2.1 (daging asap)"
+        },
+        {
+          "makanan": "Bakso",
+          "kode_makanan": "M005",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 8.2 (daging olahan)"
+        },
+        {
+          "makanan": "Ikan Asin",
+          "kode_makanan": "M006",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 9.2.1 (ikan asin)"
+        },
+        {
+          "makanan": "Jajanan Anak (Ciki/Makaron)",
+          "kode_makanan": "M007",
+          "nilai_maks": 150,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 15.1 (camilan siap saji)"
+        }
+      ]
+    },
+    {
+      "kode": "Z003",
+      "nama": "Kalsium Propionat",
+      "nama_lain": "Calcium Propionate",
+      "nomor_cas": "4075-81-4",
+      "fungsi": "Pengawet (antikapang) untuk mencegah pertumbuhan kapang pada produk roti dan bakery",
+      "batas_maksimum": [
+        {
+          "makanan": "Roti dan Bakery",
+          "kode_makanan": "M001",
+          "nilai_maks": 3000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 7.1 (roti dan produk bakery)"
+        },
+        {
+          "makanan": "Kue Basah",
+          "kode_makanan": "M002",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 7.2 (kue basah tradisional)"
+        },
+        {
+          "makanan": "Biskuit",
+          "kode_makanan": "M003",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 7.3 (biskuit)"
+        },
+        {
+          "makanan": "Tepung Olahan",
+          "kode_makanan": "M004",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 6.2 (tepung olahan)"
+        },
+        {
+          "makanan": "Mie Basah",
+          "kode_makanan": "M005",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 6.4.3 (mie basah)"
+        },
+        {
+          "makanan": "Tahu",
+          "kode_makanan": "M006",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 4.2.2 (produk kedelai olahan)"
+        },
+        {
+          "makanan": "Jajanan Anak (Ciki/Makaron)",
+          "kode_makanan": "M007",
+          "nilai_maks": 2000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 15.1 (camilan siap saji)"
+        }
+      ]
+    },
+    {
+      "kode": "Z004",
+      "nama": "Natrium Metasulfat",
+      "nama_lain": "Sodium Metabisulfite",
+      "nomor_cas": "7681-57-4",
+      "fungsi": "Pengawet, antioksidan, pemutih, dan penghambat enzimatik browning",
+      "batas_maksimum": [
+        {
+          "makanan": "Udang Beku",
+          "kode_makanan": "M001",
+          "nilai_maks": 100,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 9.2.2 (udang beku) - dihitung sebagai SO2 residual"
+        },
+        {
+          "makanan": "Kerupuk",
+          "kode_makanan": "M002",
+          "nilai_maks": 50,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 15.1 (camilan/kerupuk)"
+        },
+        {
+          "makanan": "Minuman Ringan",
+          "kode_makanan": "M003",
+          "nilai_maks": 70,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 14.1.4 (minuman ringan)"
+        },
+        {
+          "makanan": "Ikan Asin",
+          "kode_makanan": "M004",
+          "nilai_maks": 100,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 9.2.1 (ikan asin)"
+        },
+        {
+          "makanan": "Buah Kering",
+          "kode_makanan": "M005",
+          "nilai_maks": 1000,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 4.2.1 (buah kering)"
+        },
+        {
+          "makanan": "Tahu",
+          "kode_makanan": "M006",
+          "nilai_maks": 100,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 4.2.2 (produk kedelai olahan)"
+        },
+        {
+          "makanan": "Jajanan Anak (Ciki/Makaron)",
+          "kode_makanan": "M007",
+          "nilai_maks": 50,
+          "satuan": "mg/kg",
+          "keterangan": "PerBPOM No. 11/2019 - Kategori 15.1 (camilan siap saji)"
+        }
+      ]
+    }
+  ],
+  "referensi": {
+    "peraturan": "PerBPOM No. 11 Tahun 2019",
+    "tentang": "Bahan Tambahan Pangan",
+    "pasal": "Pasal 3 - BTP yang diizinkan, Pasal 5 - Batas maksimum penggunaan",
+    "lampiran": "Lampiran I - Daftar BTP yang Diizinkan, Lampiran II - Batas Maksimum Penggunaan",
+    "catatan": [
+      "Nilai batas maksimum dalam satuan mg/kg (ppm) sesuai dengan kategori pangan",
+      "Untuk Natrium Metasulfat, batas maksimum dihitung sebagai residu SO2",
+      "Data ini telah divalidasi dan diperbarui dari data skripsi tahun 2011",
+      "Regulasi tambahan: PerBPOM No. 36 Tahun 2013 untuk beberapa kategori pangan spesifik"
+    ]
+  }
+}
