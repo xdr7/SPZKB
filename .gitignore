@@ -18,6 +18,8 @@ docs/screenshots/auth-storage.json
 
 # Environment and local data
 .env
+.env.local
+.env.*.local
 *.db
 *.sqlite
 *.sqlite3
